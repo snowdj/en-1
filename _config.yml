@@ -1,6 +1,6 @@
 markdown: rdiscount
 permalink: /:year/:month/:title/
-url: http://chengjun.github.io/cn
+url: http://chengjun.github.io/en
 author: Cheng-Jun Wang
 pygments: true
 
