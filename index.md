@@ -1,5 +1,5 @@
 ---
-title: blogs
+title: Computational Communication
 layout: page
 ---
 
