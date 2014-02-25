@@ -3,7 +3,10 @@ layout: post
 title: "Recoding in R"
 date: 2013-08-14 14:23
 comments: true
-categories: R
+categories: 
+- R
+tags:
+- encoding
 ---
 
 Recoding variables is fairly easy in R. Here I summarize three appoaches and recommend the first one to you. 
