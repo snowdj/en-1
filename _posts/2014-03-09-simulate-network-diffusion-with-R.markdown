@@ -13,7 +13,9 @@ tags:
 
 ## Introduction
 
-Different from the traditional diffusion research, network diffusion research focuses on how network structure exerts its impact on the diffusion process. In this post, I present how to simulate the most simple network diffusion with R. As the first step, the algorithm is quite simple:
+Different from the traditional diffusion research, network diffusion research focuses on how network structure exerts its impact on the diffusion process. In this post, I present how to simulate the most simple network diffusion with R. 
+
+As the first step, the algorithm is quite simple:
 
 1. Generate a network g: g(V, E).
 2. Randomly select one or n nodes as seeds.
@@ -188,3 +190,5 @@ Similar to Netlogo (a software used for agent-based modeling), we can monitor th
 	}, ani.width = 800, ani.height = 500)
 
 ![](http://farm4.staticflickr.com/3672/12848749413_7f9da8b8c7_o.gif)
+
+Based on this post, I made slides using Rpres in Rstudio, you can view it  following this [link](http://chengjun.github.io/network-diffusion). 
