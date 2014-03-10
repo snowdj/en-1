@@ -16,7 +16,7 @@ http://christopherpoole.github.io/using-mathjax-on-github-pages/
 
 #highlight.js 
 
-There are many styles of highlighting to choose, click [here](http://chengjun.github.io/highlight.js/src/test.html)to decide. 
+There are many styles of highlighting to choose, click [here](http://chengjun.github.io/highlight.js/src/test.html) to decide. 
 
 1. download highlight.pack.js together with styles,languages from [here](http://highlightjs.org/download/), and upload to your folder of js. 
 2. modify the layout by adding the following code to default.html
