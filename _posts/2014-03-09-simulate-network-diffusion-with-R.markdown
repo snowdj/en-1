@@ -19,7 +19,7 @@ As the first step, the algorithm is quite simple:
 
 1. Generate a network g: g(V, E).
 2. Randomly select one or n nodes as seeds.
-3. Each infected node influences its neighbors with probability p (transmission rate, β).
+3. Each infected node influences its neighbors with probability p (transmission rate, $$\beta$$).
 
 
 ## SI model
