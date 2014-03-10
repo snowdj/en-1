@@ -28,11 +28,13 @@ Actually, this is the most basic epidemic model (SI model) which has only two st
 
 SI model describes the status of individuals switching from susceptible to infected. In this model, every individual will be infected eventually. Considering a close population without birth, death, and mobility, and assuming that each agent is homogeneous mixing,  SI model implies that each individual has the same probability to transfer the something (e.g., disease, innovation or information) to its neighbors (T. G. Lewis, 2011).
 
-Given the transmission rate $$beta$$, SI model can be described as:
+Given the transmission rate $$\beta$$, SI model can be described as:
 
 $$\frac{dS}{dt}=-\beta SI$$
 
 $$\frac{dI}{dt}=\beta SI$$
+
+\\frac{dI}{dt}=\beta SI\\
 
 Note that I + S = 1, the equation $$\frac{dI}{dt}=\beta SI$$ can be simplified as: 
 
