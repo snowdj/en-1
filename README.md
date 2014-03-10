@@ -12,7 +12,7 @@ http://christopherpoole.github.io/using-mathjax-on-github-pages/
 > <script type="text/javascript"
 > src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 > </script>
-> <!--mathjax end--   
+> <!--mathjax end-->   
 
 #highlight.js 
 
