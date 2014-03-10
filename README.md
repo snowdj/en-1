@@ -8,11 +8,11 @@ http://christopherpoole.github.io/using-mathjax-on-github-pages/
 1. modify your _config.yml by setting markdown: kramdown
 2. add the following script to default.html in the layout folder
 
-> <!--mathjax start-->
+
 > <script type="text/javascript"
 > src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 > </script>
-> <!--mathjax end-->   
+
 
 #highlight.js 
 
