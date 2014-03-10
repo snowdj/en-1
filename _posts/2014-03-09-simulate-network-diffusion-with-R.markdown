@@ -34,8 +34,6 @@ $$\frac{dS}{dt}=-\beta SI$$
 
 $$\frac{dI}{dt}=\beta SI$$
 
-\\frac{dI}{dt}=\beta SI\\
-
 Note that I + S = 1, the equation $$\frac{dI}{dt}=\beta SI$$ can be simplified as: 
 
 $$\frac{dI}{dt}=\beta I(1-I)$$
