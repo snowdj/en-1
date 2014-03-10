@@ -40,7 +40,7 @@ $$\frac{dI}{dt}=\beta I(1-I)$$
 
 Solve this equation, we can get a logistic growth function featured by its s-shaped curve. The logistic curve increases fast after it crosses the critical point, and grows much slower in the late stage. It can be used to fit the curve of diffusion of innovations. 
 
-Note that the SI model is quite naive. In the real case of epidemic spreading, we have to consider how the status of the infected change: the infected can recover and become susceptible again (SIS model), or the infected can recover and get immune (SIR, γ denotes the removal or recovery rate). 
+Note that the SI model is quite naive. In the real case of epidemic spreading, we have to consider how the status of the infected change: the infected can recover and become susceptible again (SIS model), or the infected can recover and get immune (SIR, $$$\gama$$ denotes the removal or recovery rate). 
 
 In this post, I intend to bring the network back into the simulation of SI model using R and the package igraph.
 
