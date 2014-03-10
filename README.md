@@ -22,11 +22,11 @@ There are many styles of highlighting to choose, click [here](http://chengjun.gi
 1. download highlight.pack.js together with styles,languages from [here](http://highlightjs.org/download/), and upload to your folder of js. 
 2. modify the layout by adding the following code to default.html
 
-    <!--highlight.js Start-->
-    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
-    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
-    <script>
-    hljs.configure({tabReplace: '    '});
-    hljs.initHighlightingOnLoad();
-    </script>
-    <!--highlight.js End-->
+	    <!--highlight.js Start-->
+	    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+	    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+	    <script>
+	    hljs.configure({tabReplace: '    '});
+	    hljs.initHighlightingOnLoad();
+	    </script>
+	    <!--highlight.js End-->
