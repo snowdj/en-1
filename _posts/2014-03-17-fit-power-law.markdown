@@ -28,7 +28,7 @@ Deﬁning P as the number of active users in a day and T as the total activity g
 
 They denote denote the activity of a user in one day with t(r), in which r is the decreasing rank of the activity among all individual activities in the day. Thus the maximum value of r, $$r_{max}$$, equals population P. The DGBD model of individual activities is then
 
-$$t(r) = A(P+1−r)^b r^−a (a > 0,b > 0)$$
+$$t(r) = A(P+1−r)^b r^a (a > 0,b > 0)$$
 
 They introduced that a determines the activities of highly active users(corresponds to the exponent $$\alpha$$ in Zipf’s law), b determines the activities of the less active users. Using the DGBD, They can ﬁt the empirical curves with $$R^2$$ > 0.9. 
 
