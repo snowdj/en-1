@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fitting rank order distribution with R"
-date: 2010-03-17 14:23
+date: 2014-03-17 14:23
 comments: true
 categories: 
 - R
