@@ -105,6 +105,40 @@ Finally, we can plot it with ggplot2.
 
 ![](http://farm3.staticflickr.com/2767/13213038184_4d8fb106d2_z.jpg)
 
+
+###　How to construct your model?
+
+Using the DGBD model, we can fit the frequency-rank data almost perfectly. However, there are many other other forms of alternative equations. For example, there are Zipf-Manderbrot Model and [its modifications](http://statweb.stanford.edu/~owen/courses/306a/ZipfAndGutenberg.pdf), How to guarantee that which specific model is the right one? We need to:
+
+- learn more about the underlying mechanisms. 
+- observe the patterns of the data
+
+In the paper titled [Modeling bursts and heavy tails in human dynamics](http://www3.nd.edu/~networks/Publication%20Categories/03%20Journal%20Articles/Social%20Science/Modeling%20bursts_Phys.%20Rev.%20E%2073,%20036127%20(2006).pdf), Alexei Vázquez et al tried to propose two queuing models to explain the **value** of scaling parameter in the temporal patterns of human behaviors. They capture the temporal patterns with two measurements: interevent time $$\tau$$ and waiting times$$\tau_{w}$$.
+
+The time between two consecutive events is called the interevent time, $$\tau$$; the waiting (or response) time, $$\tau_w$$, representing the amount of time a task waits on an individual’s priority list before being executed.
+
+Assuming that **the tasks are executed independently from each other at a constant rate $$\lambda$$**, the time can be approximated by a Poisson process: 
+
+$$p(\tau) = \lambda e^{-\lambda \tau}$$ . 
+
+However, we know that in many human behaviors, the Poisson process fails to capture the burst phenomenon. The temporal patterns can be generally categorized into two classes:
+
+- A. The $$\alpha$$= 1 universality class: Web browsing, email, and library datasets
+
+- B. The $$\alpha$$=3/2 universality class: The correspondence of Einstein, Darwin, and Freud, which is characterized by **a power law decay** combined with **an exponential cutoff**.
+
+$$p(\tau)\simeq \tau^{-3/2} e^{-\tau / \tau_{0}}$$. 
+
+in which $$\tau_0 = \frac{1}{\mu (1-\sqrt{\rho})}$$, and $$\rho = \lambda / \mu$$. Recall that $$\lambda$$ is the arrival rate of new task, and $$\mu$$ is the response rate , thus $$\rho$$ is the task/job/traffic intensity. 
+
+- Subcritical regime: When $$\rho$$ < 1, there are fewer job, and more queuing space. 
+- Critical regime: When $$\rho$$ < 1, arrival rate equals response rate
+- supercritical regime: When $$\rho$$ < 1, there are more job, and less queuing space. 
+
+
+However, they also find that the interevent time distribution between two consecutive transactions made by a stock broker. The distribution follows a power law with the exponential cutoff $$p(\tau)\simeq \tau^{-1.3} e^{-\tau / \tau_{0}}$$. 
+
+
 ####References
 
 Martínez-Mekler G, Martínez RA, del Río MB, Mansilla R, Miramontes P, et al. (2009) Universality of Rank-Ordering Distributions in the Arts and Sciences. PLoS ONE 4(3): e4791. doi:10.1371/journal.pone.0004791
