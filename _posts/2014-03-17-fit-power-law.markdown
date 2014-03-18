@@ -134,8 +134,8 @@ $$p(\tau)\simeq \tau^{-3/2} e^{-\tau / \tau_{0}}$$.
 in which $$\tau_0 = \frac{1}{\mu (1-\sqrt{\rho})}$$, and $$\rho = \lambda / \mu$$. Recall that $$\lambda$$ is the arrival rate of new task, and $$\mu$$ is the response rate , thus $$\rho$$ is the task/job/traffic intensity. 
 
 - Subcritical regime: When $$\rho$$ < 1, there are fewer job, and more queuing space. 
-- Critical regime: When $$\rho$$ < 1, arrival rate equals response rate
-- Supercritical regime: When $$\rho$$ < 1, there are more job, and less queuing space. 
+- Critical regime: When $$\rho$$ = 1, arrival rate equals response rate
+- Supercritical regime: When $$\rho$$ > 1, there are more job, and less queuing space. 
 
 
 However, they also find that the interevent time distribution between two consecutive transactions made by a stock broker. The distribution follows a power law with the exponential cutoff $$p(\tau)\simeq \tau^{-1.3} e^{-\tau / \tau_{0}}$$. 
