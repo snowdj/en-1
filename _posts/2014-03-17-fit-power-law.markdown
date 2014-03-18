@@ -20,6 +20,8 @@ Here, I talk about the Zipf distribution which assesses the relationship between
 
 > Zipf's law now refers more generally to frequency distributions of "rank data," in which the relative frequency of the nth-ranked item is given by the Zeta distribution. from [Wikipedia](http://en.wikipedia.org/wiki/Zipf's_law) 
 
+## DGBD
+
 In Gustavo Martínez-Mekler et al's [article](http://www.plosone.org/article/info%3adoi/10.1371/journal.pone.0004791), they proposed a discrete generalized beta distribution: $$f(r) = A(N+1-r)^b/r^a$$, where r is the rank, **N** is maximum value, A the normalization constant and (a, b) two fitting exponents.
 
 It's interesting to find that [Wu and Zhang (2011)](http://journals.aps.org/pre/pdf/10.1103/PhysRevE.84.026113) adopt the DGBD distribution to quantify the online social systems. Basically, they are interested in accelerating growth in human online behaviors. 
@@ -106,14 +108,14 @@ Finally, we can plot it with ggplot2.
 ![](http://farm3.staticflickr.com/2767/13213038184_4d8fb106d2_z.jpg)
 
 
-###　How to construct your model?
+## How to construct your model?
 
 Using the DGBD model, we can fit the frequency-rank data almost perfectly. However, there are many other other forms of alternative equations. For example, there are Zipf-Manderbrot Model and [its modifications](http://statweb.stanford.edu/~owen/courses/306a/ZipfAndGutenberg.pdf), How to guarantee that which specific model is the right one? We need to:
 
 - learn more about the underlying mechanisms. 
 - observe the patterns of the data
 
-In the paper titled [Modeling bursts and heavy tails in human dynamics](http://www3.nd.edu/~networks/Publication%20Categories/03%20Journal%20Articles/Social%20Science/Modeling%20bursts_Phys.%20Rev.%20E%2073,%20036127%20(2006).pdf), Alexei Vázquez et al tried to propose two queuing models to explain the **value** of scaling parameter in the temporal patterns of human behaviors. They capture the temporal patterns with two measurements: interevent time $$\tau$$ and waiting times$$\tau_{w}$$.
+In the paper titled [Modeling bursts and heavy tails in human dynamics](http://www3.nd.edu/~networks/Publication%20Categories/03%20Journal%20Articles/Social%20Science/Modeling%20bursts_Phys.%20Rev.%20E%2073,%20036127%20(2006).pdf), Alexei Vázquez et al tried to propose two queuing models to explain the **value** of scaling parameter in the temporal patterns of human behaviors. They capture the temporal patterns with two measurements: interevent time $$\tau$$ and waiting times $$\tau_{w}$$.
 
 The time between two consecutive events is called the interevent time, $$\tau$$; the waiting (or response) time, $$\tau_w$$, representing the amount of time a task waits on an individual’s priority list before being executed.
 
@@ -133,7 +135,7 @@ in which $$\tau_0 = \frac{1}{\mu (1-\sqrt{\rho})}$$, and $$\rho = \lambda / \mu$
 
 - Subcritical regime: When $$\rho$$ < 1, there are fewer job, and more queuing space. 
 - Critical regime: When $$\rho$$ < 1, arrival rate equals response rate
-- supercritical regime: When $$\rho$$ < 1, there are more job, and less queuing space. 
+- Supercritical regime: When $$\rho$$ < 1, there are more job, and less queuing space. 
 
 
 However, they also find that the interevent time distribution between two consecutive transactions made by a stock broker. The distribution follows a power law with the exponential cutoff $$p(\tau)\simeq \tau^{-1.3} e^{-\tau / \tau_{0}}$$. 
