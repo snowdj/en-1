@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Weibo Landscape"
+title: "The Rich-club on Sina Weibo"
 date: 2014-03-14 12:23
 comments: true
 categories: 
@@ -83,5 +83,12 @@ Click the source of the top 1000 list of archive items, you can get the url of a
 For example, using the doodod, you can visualize the diffusion path following [this link](http://www.doodod.com/doodod/chuanbo?weiboURL=http://weibo.com/1893278624/xrv9ZEuLX). The figure looks like this:
 
 ![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/04/freshnew.png)
+
+######The Landscape of Information Diffusion on Sina Weibo： 
+Investigating the Rich-Club Effect
+
+This blog post is derived from my project of information diffusion on Sina Weibo. Based on the data of weibo landscape, we find that: 
+
+Rich-club as a closely connected community in networks has important influences on the information flow within the online social system. We study the competing mechanisms underlying the information flows within and among different social groups inside the rich club of Sina Weibo. The results demonstrate that: first, there is relatively strong rich-club effect in both influential users and random sampled users; second, social selection, geographic proximity, and social influence have significant influence on the information flow within the rich-club for different social groups, and the impact of social influence is overwhelmingly strong. The implications help shed new light on our knowledge about the underlying mechanisms of information diffusion on the microblog.
 
 In the following post, I will introduce how to scrape data from Sina Weibo using Python. 
