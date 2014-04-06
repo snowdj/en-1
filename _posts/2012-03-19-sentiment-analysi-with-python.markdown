@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sentiment analysis with Python"
-date: 2013-08-14 14:23
+date: 2012-03-19 15:23
 comments: true
 categories: 
 - python
@@ -102,6 +102,7 @@ Now, we can use the naive bayes method to train the data. Have a look:
 	# > negative
 
 Don't be too positive, let's try another example: 
+
 	tweet_negative2 = 'Your song is annoying'
 	print classifier.classify(extract_features(tweet_negative2.split()))
 
