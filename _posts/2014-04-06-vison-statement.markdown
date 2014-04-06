@@ -45,20 +45,28 @@ My understanding of study could be described as a sandglass metaphor. Metaphor s
 
 When you have finished your finding part, you should head towards the discussion part. Despite of justifying the expected and unexpected result of your findings, the most important part of discussion is to generalize your findings by talking with prior relevant findings, propositions and established theories. Following this line of logic, the conclusion is only a natural part of this conversation.
 
+It’s helpful to understand the pyramid with the pyramid of scientific research on gravitation. Human beings had be curious about the earth’s position in the university. The overall framework of gravitation supplies a good example about the levels of research in science. 
+
+![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/09/gravitation.png)
+
+**The ladder of gravitation theories**
+
+Although there are significant difference between social science and natural science (here humanity is not discussed, the readers can refer to computational humanity for more information), there are more similarities in the fundamental understandings about the basic logic of knowledge.
+
+Here, I strongly recommend readers to watch the lecture given by Richard Feynman, which is titled [The Character of Physical Law – Part 1 The Law of Gravitation](https://www.youtube.com/watch?v=j3mhkYbznBk&list=PL71D034A47B46E643&feature=player_embedded)
+
+Accordingly, we argues that, there are five levels of science: data, pattern, law, mechanism, and principle. Then you may ask, where is theory?
+
+Theory is a contemplative and rational type of abstract or generalizing thinking, or the results of such thinking. Depending on the context, the results might for example include generalized explanations of how nature works, or even how divine or metaphysical matters are thought to work. The word has its roots in ancient Greek, but in modern use it has taken on several different related meanings. (Cited from Wikipedia)
+
+“Scientific theories are the most reliable, rigorous, and comprehensive form of scientific knowledge.” It’s how observers look at the outside world.  According to Kant’s idea, human beings give orders to the whole universe (aka 人类为自然立法). In the pyramid of science, theory is about the pattern, law, mechanism, and principle which is based on the data (either empirical or simulated).
+
 ![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/03/five-levels-of-science.png)
 
-**pyramid of science**
+**The pyramid of science**
 
-It’s helpful to understand the pyramid with the pyramid of scientific research on gravitation. Human beings had be curious about the earth’s position in the university.
 
-- data
-- pattern
-- law
-- mechanism
-- principle
-- 
-I strongly recommend readers to watch the lecture given by Richard Feynman, which is titled [The Character of Physical Law – Part 1 The Law of Gravitation](https://www.youtube.com/watch?v=j3mhkYbznBk&list=PL71D034A47B46E643&feature=player_embedded)
-_____________________________________________________________________
+
 
 ### Teaching
 
@@ -78,7 +86,7 @@ Teaching is one process of self-presentation, through which you represent the lo
 
 
 ####Skinner Box
-1. Everyone is equal
+- Everyone is equal
 
 Respect Your Audience. A good lesson I learnt from this class come with a question: what should you do when your students did a good job? If not, what will you do? Reflect about the answer. Do you want to reward or punish them? Remember your answer in heart.
 
@@ -88,17 +96,18 @@ I would like to introduce Skinner’s box invented by Frederic Skinner, which co
 
 Thus, you may realize that you are treating your students as passive experimental subjects. The beginning point is never to treat your students as experimental rats, and even animals deserve your respects. Students are human beings who have their own feelings, emotions, and values. The first step of teaching should be to learn to respect your audiences, even though they behave passively, or make no progress.
 
-2. Understanding human nature
+- Understanding human nature
 
 Effective teaching is to impose a set of values & beliefs on the student. The most important part should be teaching the students how to learn. The best way of learning should be acting according to the nature of human beings. Everyone had been a curious kid who wanted to explore every part of the world. Just like the cat is curious about the fish (sometime, for eating, while sometimes just for fun), human beings, in the nature, are curious about the part of knowledge they are interested in. The second step of effective teaching should be inspiring your students to fulfill their interests in the learning process.
 
 I was always not surprised about [the story of Thomas Suarez](http://www.google.com.hk/search?rlz=1C1_____enHK414&aq=f&gcx=c&sourceid=chrome&ie=UTF-8&q=Thomas+Suarez), the 12 years old kid who made two iphone Apps by learning python, java, and c. Little Thomas has been fascinated by computers and technology before kindergarten. What the teacher should think is how could we contribute to the audiences’ real interests, rather than beat around the bush complaining why the students have no passion in the boring class.
 
-3. Being Open-minded
+- Being Open-minded
 
 The world is always changed by new comers. The teacher will finally find his or her understandings about the cutting-edge scientific study are not perfect. The best way is not to constrain the students from challenging the tradition. Being open-minded, sit down, and enjoy the new outline drawn by the young people.
 
 ___________________________________________________________________
+
 ![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2011/09/logic.png)
 
 
