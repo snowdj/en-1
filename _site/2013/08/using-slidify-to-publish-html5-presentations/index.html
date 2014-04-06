@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Using slidify to publish HTML5 presentations | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Using slidify to publish HTML5 presentations</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>I am inspired to use markdown to make HTML5 slides, However the specification is too hard. Actually, I don&#8217;t know how to make it less ugly, especilly for the first page of the slides. </p>
+
+<p>By chance, I find Torres&#8217;s slides (<a href="http://lcolladotor.github.io/Rmd-intro/">Click here</a>), it is made through R using the slidify package. Of course, you also need to write R markdown using Rstudio and Knitr. </p>
+
+<h1 id="install-slidify-package-in-rstudio">Install slidify package in Rstudio</h1>
+
+<pre lang="ruby"><code>install_github('slidify', 'ramnathv')
+install_github('slidifyLibraries', 'ramnathv')
+</code></pre>
+
+<p>However, to install R packages host on Github is very painful. I failed in installing the slidifyLibrairies package. </p>
+
+<p>Following thie post <a href="http://thiagosilva.wordpress.com/2013/02/17/installing-slidify-on-a-windows-machine/">installing-slidify-on-a-windows-machine</a>. Althought I have tried R CMD INSTALL, but failed. I don&#8217;t know why :&lt;, however, I use the alternative method to install R packages on local computers.</p>
+
+<p>First, download slidifyLibraries from <a href="https://github.com/ramnathv/slidifyLibraries">github</a> to your local directory, e.g., &#8220;D:/github/&#8221;.</p>
+
+<p>Second, extract it and rename it as &#8220;slidifyLibraries&#8221;.</p>
+
+<p>Third, build it with this R script: </p>
+
+<pre lang="ruby"><code>build("D:/github/slidifyLibraries/", binary=FALSE)
+</code></pre>
+
+<p>Fourth, install the tar.gz file following this R script:</p>
+
+<pre lang="ruby"><code>install.packages("D:/github/slidifyLibraries_0.1.tar.gz", repos = NULL, type = "source")
+</code></pre>
+
+<h1 id="using-slidify-to-write-r-markdown">Using slidify to write R markdown</h1>
+
+<p>initialize a presentation following this introduction about <a href="https://github.com/ramnathv/slidify">slidify</a>. </p>
+
+<pre lang="ruby"><code>library(slidify)
+author('mydeck')
+</code></pre>
+
+<h1 id="write-markdown-files">Write markdown files</h1>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/I95GOmLc7TA" frameborder="0" allowfullscreen=""></iframe>
+
+<pre lang="ruby"><code>&lt;iframe width="420" 
+height="315" src="//www.youtube.com/embed/I95GOmLc7TA" 
+frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+</code></pre>
+
+<p>Check my first slidify HTML5 slides here: chengjun.github.io/slides/computational-communication.html</p>
+
+<p>Click <a href="http://chengjun.github.io/slides/computational-communication.html">here</a> to see it.  </p>
+
+<p><img src="http://gifs.gifbin.com/1236681924_snail_transformers.gif" alt="" /></p>
+
+<p>The markdown file is given below (I choose &#8220;standalone&#8221; as the mode):</p>
+
+<pre lang="ruby"><code>---
+title       : The Way to Computational Communication
+subtitle    : 
+author      : Cheng-Jun Wang
+job         : Web Mining Web, City University of Hong Kong
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : standalone # {standalone, draft, selfcontained}
+---
+
+## Three metaphors of theory
+&gt;Immanuel Kant: All our knowledge begins with the senses, proceeds then to the understanding, and ends with reason. There is nothing higher than reason.
+
+![](http://farm8.staticflickr.com/7379/9532736494_99b95287a2_z.jpg)
+
+--- .class #id 
+
+## Sandglass of generalization
+
+![](http://farm8.staticflickr.com/7366/9529954881_53a00fe15b_z.jpg)
+
+---
+## Five levels of Research
+
+![](http://farm3.staticflickr.com/2819/9529954801_e6d59c8eba_z.jpg)
+
+---
+## Computational Thinking
+
+![](http://farm4.staticflickr.com/3669/9529954763_06a6c95970_z.jpg)
+
+---
+## The Way to Computational Communication
+
+![](http://farm6.staticflickr.com/5540/9529954731_4cbf032b06_z.jpg)
+
+---
+
+## Network Science
+
+![](http://farm8.staticflickr.com/7353/9529954585_94686e3aa4_z.jpg)
+
+--- .class1 #id1 bg:yellow
+
+
+## What should we do?
+
+
+- Network science
+- Statistical linguistics
+- Human dynamics
+- Big data&amp; digital traces
+- Digital media
+- Data journalism
+- Computational advertising
+
+![](http://gifs.gifbin.com/1236681924_snail_transformers.gif)
+
+---
+
+## Thank you for your attention!
+
+## wangchj04@gmail.com
+
+![](http://farm3.staticflickr.com/2840/9508319890_2cbaa2c4d4_n.jpg)
+</code></pre>
+
+<h1 id="how-to-host-your-slidify-html5-presentations-on-github">How to host your slidify HTML5 presentations on github</h1>
+
+<p>I failed in publish it directly to github following the the way introduced by slidify website. I am not sure why it does not work. However, I figured out my solutions.</p>
+
+<p><img src="http://farm6.staticflickr.com/5460/9533395543_6747795221_o.png" alt="" /></p>
+
+<p>You can still do it very easily. But, first, you should know the structure of github repository. Assume you have a github repo named &#8220;slidify&#8221;. We can work at different branches: &#8220;master&#8221; or &#8220;gh-pages&#8221;. You can generate your gh-pages branch following the figure on the right. gh-pages is a very special branch of github repository. The branch of gh-pages are acturally a website host by Github.The files in slidify/test/index.html on the branch of gh-pages could be displayed by your default github website. e.g., chengjun.github.io/slidify/test. So the first move is to make a gh-pages, and upload your slidify stuff to this branch.</p>
+
+<p>You can generate new sub-branch too. e.g., slidify/computational-communication. See two examples:</p>
+
+<p><a href="http://chengjun.github.io/slides/slidify/">http://chengjun.github.io/slides/slidify/</a></p>
+
+<p><a href="http://chengjun.github.io/slides/slidify/computational-communication">http://chengjun.github.io/slides/slidify/computational-communication</a></p>
+
+<p>If your markdown file is &#8216;selfcontained&#8217; , it will not turn to https://code.google.com/p/slidifylibraries/ for the font and theme information (but it still needs to refer to the other websites where your insert your pictures into your slides). So theoretically, self-contained file is a little little little bit faster than &#8216;standalone&#8217; files. However, you can almost not detect it if the internet access is good. Check this standalone HTML in the following link and compare it with the two selfcontained ones on the above:</p>
+
+<p><a href="http://chengjun.github.io/slides/computational-communication">http://chengjun.github.io/slides/computational-communication</a></p>
+
+<p>In you sub-directory, you have to have everything the selfcontained html needs, it is not clever enough to scan the upper-directory. Anyway, enjoy your HTML5 slides host on github!</p>
+
+<h1 id="afterwords">Afterwords</h1>
+
+<p>I have also tried to use pandoc and reveal.js to make slides.</p>
+
+<p>Using reveal.js, I have reproduced the slides of computational communication on slid.es.</p>
+
+<iframe src="http://slid.es/cheng-junwang/cc/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>However, using pandoc and markdown, it seems to be quite limited to set the slides, here is the result:<a href="chengjun.github.io/slides/reveal.js/cc">chengjun.github.io/slides/reveal.js/cc</a></p>
+
+<p>The method is briefly introduced here: <a href="chengjun.github.io/slides/reveal.js/pandoc-revealjs-slides">chengjun.github.io/slides/reveal.js/pandoc-revealjs-slides</a></p>
+
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2013-08-18">2013-08-18</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#r" title="r">r</a>&nbsp;
+  
+  <a href="http://chengjun.github.io/en/categories/#pandoc" title="pandoc">pandoc</a>&nbsp;
+  
+  <a href="http://chengjun.github.io/en/categories/#markdown" title="markdown">markdown</a>&nbsp;
+  
+  <a href="http://chengjun.github.io/en/categories/#reveal.js" title="reveal.js">reveal.js</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2013/08/using-slidify-to-publish-html5-presentations/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2013/08/plot-regression-coefficient-with-r/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2014/03/simulate-network-diffusion-with-R/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

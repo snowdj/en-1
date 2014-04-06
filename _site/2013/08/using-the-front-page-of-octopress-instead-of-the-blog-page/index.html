@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Using the front-page of Octopress instead of the blog page | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Using the front-page of Octopress instead of the blog page</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<h2 id="using-a-landing-page-rather-than-the-blog-page">Using a Landing Page rather than the Blog Page</h2>
+
+<p>It&#8217;s annoying to find that users are directed to your blog page directly. In my point of view, octopress is not just a personal blog. It is your website, your home online, where you can present yourself easily, rather than limiting yourself to the blog posts.</p>
+
+<p><img src="http://farm8.staticflickr.com/7387/9450821960_84d5be16c9.jpg" alt="" /></p>
+
+<p>I have made a &#8220;Home&#8221; page before. However, the home page is not directed as the landing page. </p>
+
+<p>To have a look at the navigation method used in my navigation.html:</p>
+
+<pre><code>&lt;ul class="main-navigation"&gt;
+  &lt;li&gt;&lt;a href="/home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/cv"&gt;CV&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/blog/archives"&gt;Archives&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>You will find that the root_url is directed to the blog page！ How to change it? Bear in mind that octopress orgainze the pages by index page. There is a index page for any pages, e.g, an index page for the blog page, an index page for the archives page, an index page for the home page. Thus, we can think in another way, why not make a index page for the root_url? This can solve the problem. </p>
+
+<p>First, Of course, we should move the index page to the blog directory first.By default Octopress generates your blog’s post index at your site’s root directory. If you’d rather publish your blog index somewhere else like blog/index.html do this in your terminal.</p>
+
+<pre><code>mv source/index.html source/blog/index.html
+</code></pre>
+
+<p>Second,we can make an index page for the root_url of the source.</p>
+
+<pre><code>rake new_page[index.html]
+</code></pre>
+
+<p>Third, you’ll want to update your Rakefile to be sure your new blog index is preserved when you update Octopress. This tells the octopress that your index page for the blog is moved to the directory of &#8220;source/blog&#8221;.</p>
+
+<pre><code>blog_index_dir = 'source/blog'
+</code></pre>
+
+<p>Fourth, remember to update the main navigation for your site(octopress/source/_includes/custom/navigation.html), since currently the blog link points to /. Skip down to the section on changing navigation, add a ‘home’ link and update the ‘blog’ link to point to /blog/.</p>
+
+<pre><code>&lt;ul class="main-navigation"&gt;
+  &lt;li&gt;&lt;a href="/home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/cv"&gt;CV&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/blog"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/blog/archives"&gt;Archives&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>Finally, source/index.html can become the landing page of your &#8220;wildest dreams&#8221;. My dream is fairly small: to let the index page of the source be directed to the index page of the Home page (I have make a home page before). The bad news is I have no prior knowledge of html language, if you know how to do it, tell me please. The good news is I can copy and paste the index page of the Home directly (&#8220;octopress/public/home/index.html&#8221;).</p>
+
+<h4 id="references">References</h4>
+<p>Landing Page vs. Blog Index. http://octopress.org/docs/theme/template/</p>
+
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2013-08-06">2013-08-06</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#octopress" title="octopress">octopress</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="http://chengjun.github.io/en/tags/#Landing page" title="Landing page">Landing page</a>&nbsp;
+  
+  <a href="http://chengjun.github.io/en/tags/#Navigation" title="Navigation">Navigation</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2013/08/using-the-front-page-of-octopress-instead-of-the-blog-page/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2013/08/bloging-with-markdown-on-octopress/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2013/08/present-pandoc-slides-on-octopress/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

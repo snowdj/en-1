@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Hosting pandoc slides on Octopress | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Hosting pandoc slides on Octopress</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>## </p>
+
+<p>I have made a dzslides from a markdown file using pandoc, and then I want to archive and present it on octopress. Check the result to learn about how to make simple slides using pandoc <a href="http://chengjun.github.io/slides/pandoc-slides">here</a>.</p>
+
+<p>The mechanism of octopress is a little bit inflexible. </p>
+
+<p><img src="http://farm8.staticflickr.com/7340/9450821728_ac4f8c375e_o.png" alt="" /></p>
+
+<p>Basicially, we generate markdown files in the directory of _posts:</p>
+
+<pre><code>rake new_post["the title of your post"]
+</code></pre>
+
+<p>and then we transform the markdown files to html placed in the dirctory of public. </p>
+
+<pre><code>rake generate
+</code></pre>
+
+<p>After that, we deploy the html files to the server. </p>
+
+<pre><code>rake deploy
+</code></pre>
+
+<p>Thus, accordingly, the solution is given as following:</p>
+
+<p>First, we make a slides folder in the source directory, e.g., &#8220;octopress/source/slides/&#8221;, and put the html of slide into this folder. </p>
+
+<p>Second, we generate the file to the public folder and deploy the html file to the server.</p>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<p>You can open the slides directly with the url: http://chengjun.github.io/slides/pandoc-slides</p>
+
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2013-08-06">2013-08-06</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#octopress" title="octopress">octopress</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2013/08/present-pandoc-slides-on-octopress/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2013/08/using-the-front-page-of-octopress-instead-of-the-blog-page/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2013/08/generating-networks-with-igraph/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

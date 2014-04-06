@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Scraping New York Times & The Guardian using Python | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Scraping New York Times & The Guardian using Python</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>I have read the blog post about Scraping New York Times Articles with R. It’s great. I want to reproduce the work with python.
+First, we should learn about nytimes article search api.</p>
+
+<p><a href="http://developer.nytimes.com/docs/article_search_api/">http://developer.nytimes.com/docs/article_search_api/</a></p>
+
+<p>Second, we need to register and get the key which will be used in python script.</p>
+
+<p><a href="http://developer.nytimes.com/apps/register">http://developer.nytimes.com/apps/register</a></p>
+
+<pre><code># !/usr/bin/env python
+# -*- coding: UTF-8  -*-
+# Scraping New York Times using python
+# 20120421@ Canberra
+# chengjun wang
+
+import json
+import urllib2
+
+'''
+About the api and the key, see the links above.
+'''
+
+'''step 1: input query information'''
+apiUrl='http://api.nytimes.com/svc/search/v1/article?format=json'
+query='query=occupy+wall+street'                            # set the query word here
+apiDate='begin_date=20110901&amp;end_date=20120214'             # set the date here
+fields='fields=body%2Curl%2Ctitle%2Cdate%2Cdes_facet%2Cdesk_facet%2Cbyline'
+offset='offset=0'
+key='api-key=c2c5b91680.......2811165'  # input your key here
+
+'''step 2: get the number of offset/pages'''
+link=[apiUrl, query, apiDate, fields, offset, key]
+ReqUrl='&amp;'.join(link)
+jstr = urllib2.urlopen(ReqUrl).read()  # t = jstr.strip('()')
+ts = json.loads( jstr )
+number=ts['total'] #  the number of queries  # query=ts['tokens'] # result=ts['results']
+print number
+seq=range(number/9)  # this is not a good way
+print seq
+
+'''step 3: crawl the data and dump into csv'''
+import csv
+addressForSavingData= "D:/Research/Dropbox/tweets/wapor_assessing online opinion/News coverage of ows/nyt.csv"
+file = open(addressForSavingData,'wb') # save to csv file
+for i in seq:
+    nums=str(i)
+    offsets=''.join(['offset=', nums]) # I made error here, and print is a good way to test
+    links=[apiUrl, query, apiDate, fields, offsets, key]
+    ReqUrls='&amp;'.join(links)
+    print "*_____________*", ReqUrls
+    jstrs = urllib2.urlopen(ReqUrls).read()
+    t = jstrs.strip('()')
+    tss= json.loads( t )  # error no joson object
+    result = tss['results']
+    for ob in result:
+        title=ob['title']  # body=ob['body']   # body,url,title,date,des_facet,desk_facet,byline
+        print title
+        url=ob['url']
+        date=ob['date'] # desk_facet=ob['desk_facet']  # byline=ob['byline'] # some author names don't exist
+        w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        w.writerow((date, title, url)) # write it out
+file.close()
+pass
+</code></pre>
+
+<p>see the result:</p>
+
+<p><img src="http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/04/nyt1.png" alt="" /></p>
+
+<p>Similarly, you can crawl the article data from The Guardian. See the link below.</p>
+
+<p><a href="http://explorer.content.guardianapis.com/#/?format=json&amp;order-by=newest">http://explorer.content.guardianapis.com/#/?format=json&amp;order-by=newest</a></p>
+
+<p>After you have registered you app and got the key, we can work on the python script.</p>
+
+<pre><code># !/usr/bin/env python
+# -*- coding: UTF-8 &amp;nbsp;-*-
+# Scraping The Guardian using Python
+# 20120421@ Canberra
+# chengjun wang
+
+import json
+import urllib2
+
+'''
+
+http://content.guardianapis.com/search?q=occupy+wall+street&amp;from-date=2011-09-01&amp;to-date=2012-02-14&amp;page=2
+
+&amp;page-size=3&amp;format=json&amp;show-fields=all&amp;use-date=newspaper-edition&amp;api-key=m....g33gzq
+'''
+
+'''step 1: input query information'''
+apiUrl='http://content.guardianapis.com/search?q=occupy+wall+street' # set the query word here
+apiDate='from-date=2011-09-01&amp;to-date=2011-10-14' &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; # set the date here
+apiPage='page=2' &amp;nbsp; &amp;nbsp; &amp;nbsp;# set the page
+apiNum=10 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; # set the number of articles in one page
+apiPageSize=''.join(['page-size=',str(apiNum)])
+fields='format=json&amp;show-fields=all&amp;use-date=newspaper-edition'
+key='api-key=mudfuj...g33gzq' &amp;nbsp;# input your key here
+
+'''step 2: get the number of offset/pages'''
+link=[apiUrl, apiDate, apiPage, apiPageSize, fields, key]
+ReqUrl='&amp;'.join(link)
+jstr = urllib2.urlopen(ReqUrl).read() &amp;nbsp;# t = jstr.strip('()')
+ts = json.loads( jstr )
+number=ts['response']['total'] # &amp;nbsp;the number of queries &amp;nbsp;# query=ts['tokens'] # result=ts['results']
+print number
+seq=range(number/(apiNum-1)) &amp;nbsp;# this is not a good way
+print seq
+
+'''step 3: crawl the data and dump into csv'''
+import csv
+addressForSavingData= "D:/Research/Dropbox/tweets/wapor_assessing online opinion/News coverage of ows/guardian.csv"
+file = open(addressForSavingData,'wb') # save to csv file
+for i in seq:
+nums=str(i+1)
+apiPages=''.join(['page=', nums]) # I made error here, and print is a good way to test
+links= [apiUrl, apiDate, apiPages, apiPageSize, fields, key]
+ReqUrls='&amp;'.join(links)
+print "*_____________*", ReqUrls
+jstrs = urllib2.urlopen(ReqUrls).read()
+t = jstrs.strip('()')
+tss= json.loads( t )
+result = tss['response']['results']
+for ob in result:
+title=ob['webTitle'].encode('utf-8') &amp;nbsp;# body=ob['body'] &amp;nbsp; # body,url,title,date,des_facet,desk_facet,byline
+print title
+section=ob["sectionName"].encode('utf-8')
+url=ob['webUrl']
+date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] &amp;nbsp;# byline=ob['fields']['byline']
+w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+w.writerow((date, title, section, url)) # write it out
+file.close()
+pass
+</code></pre>
+
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2012-04-23">2012-04-23</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#python" title="python">python</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="http://chengjun.github.io/en/tags/#news media" title="news media">news media</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2012/04/scraping-newyork-times-with-python/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2011/12/visualize-with-googlevis/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2013/08/bloging-with-markdown-on-octopress/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Plot regression coefficient with R | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Plot regression coefficient with R</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>To visualize the regression coefficient is very useful. There are at least to packages (arm, coefplot) devoted to this purpose. However, both them are not beautiful enough, compared with the effect of boxplot. </p>
+
+<p>I refer to the R script written by <a href="http://www.carlislerainey.com/2012/06/30/coefficient-plots-in-r/">Carlisle Rainey</a>. What I do is to add rectangles and vertical line into the plot made by Carlisle Rainey.Please refer to this post for more information: <a href="http://www.carlislerainey.com/2012/06/30/coefficient-plots-in-r/">http://www.carlislerainey.com/2012/06/30/coefficient-plots-in-r/</a></p>
+
+<p><img src="http://farm4.staticflickr.com/3737/9520667493_576a8525c7_z.jpg" alt="" /></p>
+
+<p>Figure 1 Plot with rectangles and vertical lines</p>
+
+<p>Here is the R script:</p>
+
+<pre lang="ruby"><code>library(arm)
+library(alr3) # load the alr3 package (contains data set for illustration)
+data(highway) # load the highway data set from alr3
+d &lt;- highway  # call the data set d for convenience
+
+m &lt;- lm(Rate ~ Lwid + Shld + Lane + Len + ADT + Trks, data = d)  # estimate the normal linear model
+
+## create a vector to store the variable names
+var.names &lt;- c("lane width, in feet", "width in feet of outer\nshoulder on the roadway",
+  "total number of lanes\nof traffic", "length of the highway\nsegment in miles",
+  "average daily traffic\ncount in thousands", "truck volume as a percent\nof the total volume")
+
+## set up the plot region:
+plot(c(100, 250), c(300, 450), type = "n")
+rect(120,300, 180, 305, col=rainbow(11, start=.7,end=.1))
+
+## Plot Labels outside graph
+
+# set the graphical parameters
+par(
+  family = "serif",  # I don't plot in anything but serif
+  oma = c(0,0,0,0),  # Since it is a single plot, I set the outer margins to zero.
+  mar = c(5,10,4,2)  # Inner margins are set through a little trial and error.
+  )
+
+# create an empty plot for total customization
+plot(NULL,                              # create empty plot
+  xlim = c(-2, 2),                      # set xlim by guessing
+  ylim = c(.7, length(var.names) + .3), # set ylim by the number of variables
+  axes = F, xlab = NA, ylab = NA)       # turn off axes and labels
+
+# add the data
+est &lt;- coef(m)[-1]              # conveniently store the estimates (minus the constant)
+se &lt;- sqrt(diag(vcov(m)))[-1]   # conveniently store the std. errors (minus the constant)
+for (i in 1:length(est)) {                # loop over a counter the length of the estimate vector
+  points(est[i], i, pch = 3, cex = .5)     # add the points to the plot
+  points(est[i]+ 1.64*se[i], i, pch = "|", cex = 1.5) ## add the verticle lines
+  points(est[i]- 1.64*se[i], i, pch = "|", cex = 1.5) ## add the verticle lines
+  lines(c(est[i] + 1.64*se[i], est[i] - 1.64*se[i]), c(i, i), )         # add the 90% confidence intervals
+  rect(est[i] + .67*se[i],i-0.1, est[i]- .67*se[i], i+0.1, col="#0000ff22") ## add rectancles to present 50% confidence intervals
+  text(-2.9, i, var.names[i], xpd = T, cex = .8)                      # add the variable names
+}
+
+# add axes and labels
+axis(side = 1)                                                                                          # add bottom axis
+abline(v = 0, lty = 3, col = "grey")                                                                    # add verticle line
+mtext(side = 1, "Linear Regression Coefficient", line = 3)                                              # label bottom axis
+mtext(side = 3, "Linear Regression Model of\n the Accident Rate per Million Vehicle Miles", line = 1)   # add title
+box() 
+</code></pre>
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2013-08-16">2013-08-16</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#r" title="r">r</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2013/08/plot-regression-coefficient-with-r/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2013/08/understanding-bass-diffusion-model-with-R/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2013/08/using-slidify-to-publish-html5-presentations/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

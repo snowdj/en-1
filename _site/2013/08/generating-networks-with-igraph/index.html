@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Generating networks with igraph | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Generating networks with igraph</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>We know that the most simple network is the regular network, such as the ring network. If all the edges in a network are generated randomly, we can get a random graph or Erdos-Renyi network (ER network). </p>
+
+<h2 id="erdsrnyi-random-graph-model">Erdős–Rényi Random Graph model</h2>
+
+<blockquote>
+  <p>The Erdős–Rényi model, named for Paul Erdős and Alfréd Rényi, is used for generating random graphs in which edges are set between nodes with equal probabilities.</p>
+</blockquote>
+
+<p>There is a continuous shift between randomness and regularity. What are the networks between random network and regular networks?</p>
+
+<h2 id="watts-strogatz-small-world-model">Watts-Strogatz Small World model</h2>
+
+<blockquote>
+  <p>The Watts and Strogatz model is a random graph generation model that produces graphs with small-world properties.
+An initial lattice structure is used to generate a Watts-Strogatz model. Each node in the network is initially linked to its k closest neighbors. Another parameter is specified as the rewiring probability. Each edge has a probability p that it will be rewired to the graph as a random edge. </p>
+</blockquote>
+
+<h2 id="barabsialbert-ba-preferential-attachment-model">Barabási–Albert (BA) Preferential Attachment model</h2>
+
+<blockquote>
+  <p>The Barabási–Albert model is a random network model used to demonstrate a preferential attachment or a &#8220;rich-get-richer&#8221; effect. In this model, an edge is most likely to attach to nodes with higher degrees. The network begins with an initial network of m nodes. m ≥ 2 and the degree of each node in the initial network should be at least 1, otherwise it will always remain disconnected from the rest of the network.</p>
+
+  <p>In the BA model, new nodes are added to the network one at a time. Each new node is connected to m existing nodes with a probability that is proportional to the number of links that the existing nodes already have. </p>
+
+</blockquote>
+
+<p>We can use igraph to play the network games, and explore the properties of generated networks.</p>
+
+<blockquote>
+  <p>igraph is an open source C library for the analysis of large-scale complex networks, with interfaces to R, Python and Ruby.</p>
+</blockquote>
+
+<p>Here is the R script for generating and visualizing networks. </p>
+
+<pre><code>library(igraph)
+g1 &lt;- graph.ring(500)
+g2 &lt;- erdos.renyi.game(500, 0.0035)
+g3 &lt;- rewire.edges( g1, prob = 0.5 )
+g4 &lt;- barabasi.game(500)	
+# 保存图片格式
+png("d:/network_game.png", 
+	width=5, height=5, 
+	units="in", res=700)
+# 绘制图片
+par(mfrow=c(2,2))
+plot(g1, vertex.label= NA, edge.arrow.size=0.02,vertex.size = 0.5, xlab = "Ring Network")
+plot(g2, vertex.label= NA, edge.arrow.size=0.02,vertex.size = 0.5, xlab = "Random Network")
+plot(g3, vertex.label= NA, edge.arrow.size=0.02,vertex.size = 0.5, xlab = "Small World Network")
+plot(g4, vertex.label= NA, edge.arrow.size=0.02,vertex.size = 0.5, xlab = "Scale-free Network")
+# 结束保存图片
+dev.off()
+</code></pre>
+
+<p><img src="http://farm3.staticflickr.com/2875/9490993155_0787ab3832_c.jpg" alt="" /></p>
+
+<p>Of courese, there are other network games in the library of igraph, such as the game of forest fire.</p>
+
+<pre><code>g5 &lt;- forest.fire.game(200, fw.prob=0.37, bw.factor=0.32/0.37)
+plot(g5, vertex.label= NA, edge.arrow.size=0.02,vertex.size = 0.5)
+</code></pre>
+
+<p><strong>References</strong></p>
+
+<p>http://en.wikipedia.org/wiki/Network_science#Network_models</p>
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2013-08-12">2013-08-12</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#network" title="network">network</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2013/08/generating-networks-with-igraph/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2013/08/present-pandoc-slides-on-octopress/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2013/08/recoding-in-r/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
