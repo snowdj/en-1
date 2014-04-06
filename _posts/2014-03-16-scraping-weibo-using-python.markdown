@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Scraping Data from Sina Weibo using Python"
+title: "Scraping data from Sina Weibo using Python"
 date: 2014-03-16 12:01
 comments: true
 categories: 
