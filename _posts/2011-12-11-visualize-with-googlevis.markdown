@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Visualizing dynamic change with googleVis"
+title: "Visualizing dynamic changes with googleVis"
 date: 2011-12-11 14:23
 comments: true
 categories: 
