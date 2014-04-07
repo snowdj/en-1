@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Cheng-Jun Wang" />
+    <title>Sentiment analysis with Python | Cheng-Jun Wang</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="http://chengjun.github.io/en/feed/" rel="alternate" title="Cheng-Jun Wang" type="application/atom+xml" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <script type="text/javascript" src="/media/js/jquery-1.7.1.min.js"></script>
+    <!--highlight.js Start-->
+    <link rel="stylesheet" title="Default" href="/media/js/styles/tomorrow-night-blue.css">
+    <script type="text/javascript" src="/media/js/highlight.pack.js"></script>
+    <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+    </script>
+    <!--highlight.js End-->
+    <!--mathjax start-->
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <!--mathjax end-->
+  </head>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Sentiment analysis with Python</h1>
+        </header>
+        <nav>
+		<!-- Sidebar -->
+        <h5 id="logo" style="text-align:center;">
+        <a href="http://chengjun.github.io/" target="_blank">
+			<img src="/cv/images/chengjun.jpg" width="100" class="with_border"/>
+        </a><a href="http://chengjun.github.io/">Cheng-Jun Wang</a></h5>
+		<span><a title="About me" class="" href="http://chengjun.github.io/">about</a></span>
+        <span><a title="blog page" class="" href="http://chengjun.github.io/en/">blog</a></span>
+        <span><a title="cv" class="" href="http://chengjun.github.io/cv/">cv</a></span>
+        <span><a title="categories" class="" href="http://chengjun.github.io/en/categories/">categories</a></span>
+        <span><a title="tags" class="" href="http://chengjun.github.io/en/tags/">tags</a></span>
+        <span><a title="links" class="" href="http://chengjun.github.io/en/links/">links</a></span>
+        <span><a title="subscribe by RSS" class="" href="http://chengjun.github.io/en/feed/">subscribe</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<p>Learning To Do Sentiment Analysis Using Python &amp; NLTK</p>
+
+<p>This is my first try to learn sentiment analysis using python. You can find the original post by Laurent Luce <a href="http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/">following this link</a>. </p>
+
+<p>I am glad to know that, with the aid of naive Bayes, NLTK could distinguish ‘like’ and ‘does not like’ into &#8216;positive&#8217; and &#8216;negative&#8217; respectively. I am wondering how R behaves compared with it. The method below employed the procedures depicted in the following figure.</p>
+
+<p><img src="http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/03/overview-of-sentiment-analysis-using-nltk.png" alt="original author: Laurent Luce" /></p>
+
+<p>Figure created by <a href="http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/">Laurent Luce</a></p>
+
+<p>Load in the data first.</p>
+
+<pre><code># Python script
+import nltk
+
+pos_tweets = [('I love this car', 'positive'),
+	('This view is amazing', 'positive'),
+	('I feel great this morning', 'positive'),
+	('I am so excited about the concert', 'positive'),
+	('He is my best friend', 'positive')]
+
+neg_tweets = [('I do not like this car', 'negative'),
+	('This view is horrible', 'negative'),
+	('I feel tired this morning', 'negative'),
+	('I am not looking forward to the concert', 'negative'),
+	('He is my enemy', 'negative')]
+
+tweets = []
+for (words, sentiment) in pos_tweets + neg_tweets:
+	words_filtered = [e.lower() for e in words.split() if len(e) &gt;= 3]
+	tweets.append((words_filtered, sentiment))
+
+test_tweets = [
+	(['feel', 'happy', 'this', 'morning'], 'positive'),
+	(['larry', 'friend'], 'positive'),
+	(['not', 'like', 'that', 'man'], 'negative'),
+	(['house', 'not', 'great'], 'negative'),
+	(['your', 'song', 'annoying'], 'negative')]
+</code></pre>
+
+<p>Then we need to get the unique word list as the features for classification.</p>
+
+<pre><code># get the word lists of tweets
+def get_words_in_tweets(tweets):
+	all_words = []
+	for (words, sentiment) in tweets:
+		all_words.extend(words)
+	return all_words
+
+# get the unique word from the word list	
+def get_word_features(wordlist):
+	wordlist = nltk.FreqDist(wordlist)
+	word_features = wordlist.keys()
+	return word_features
+
+word_features = get_word_features(get_words_in_tweets(tweets))
+</code></pre>
+
+<p>To create a classifier, we need to decide what features are relevant. To do that, we first need a feature extractor. </p>
+
+<pre><code>def extract_features(document):
+    document_words = set(document)
+    features = {}
+    for word in word_features:
+      features['contains(%s)' % word] = (word in document_words)
+    return features
+</code></pre>
+
+<p>Then, we can build up the training set and create the classifier:</p>
+
+<pre><code>training_set = nltk.classify.util.apply_features(extract_features, tweets)
+
+classifier = nltk.NaiveBayesClassifier.train(training_set)
+</code></pre>
+
+<p>You may want to know how to define the &#8216;train&#8217; method in NLTK here:</p>
+
+<pre><code>def train(labeled_featuresets, estimator=nltk.probability.ELEProbDist):
+    # Create the P(label) distribution
+    label_probdist = estimator(label_freqdist)
+    # Create the P(fval|label, fname) distribution
+    feature_probdist = {}
+    return NaiveBayesClassifier(label_probdist, feature_probdist)
+</code></pre>
+
+<p>Now, we can use the naive bayes method to train the data. Have a look:</p>
+
+<pre><code>tweet_positive = 'Larry is my friend'
+tweet_negative = 'Larry is not my friend'
+
+print classifier.classify(extract_features(tweet_positive.split()))
+# &gt; positive
+print classifier.classify(extract_features(tweet_negative.split()))
+# &gt; negative
+</code></pre>
+
+<p>Don&#8217;t be too positive, let&#8217;s try another example: </p>
+
+<pre><code>tweet_negative2 = 'Your song is annoying'
+print classifier.classify(extract_features(tweet_negative2.split()))
+</code></pre>
+
+<p>Now, we will classify the test_tweets and calculate the recall accuracy.</p>
+
+<pre><code>def classify_tweet(tweet):
+    return \
+        classifier.classify(extract_features(tweet)) # nltk.word_tokenize(tweet)
+
+total = accuracy = float(len(test_tweets))
+
+for tweet in test_tweets:
+    if classify_tweet(tweet[0]) != tweet[1]:
+        accuracy -= 1
+
+print('Total accuracy: %f%% (%d/20).' % (accuracy / total * 100, accuracy))
+# 0.8
+</code></pre>
+
+<p>Of course, this is only the starting point. In the future, I will use the same data set, to so <a href="http://chengjun.github.io/en/2014/04/sentiment-analysis-with-machine-learning-in-R/">how to do it in R</a> using naive Bayes and beyond.</p>
+
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://chengjun.github.io/en">Cheng-Jun Wang</a>
+</span>
+<span class="time">
+  /
+  <time datetime="2012-03-19">2012-03-19</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="http://chengjun.github.io/en/categories/#python" title="python">python</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="http://chengjun.github.io/en/tags/#sentiment analysis" title="sentiment analysis">sentiment analysis</a>&nbsp;
+  
+  <a href="http://chengjun.github.io/en/tags/#nltk" title="nltk">nltk</a>&nbsp;
+  
+</span>
+
+</section>
+<section class="comment">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname ='ChengjunWANG'; // required: replace example with your forum shortname
+    var disqus_url = 'http://chengjun.github.io/en/2012/03/sentiment-analysi-with-python/';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    if (e.target.nodeName.toUpperCase() != 'BODY') return;
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://chengjun.github.io/en/2011/12/visualize-with-googlevis/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://chengjun.github.io/en/2012/04/scraping-newyork-times-with-python/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+
+        </article>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

@@ -121,7 +121,7 @@ pass
 <p>After you have registered you app and got the key, we can work on the python script.</p>
 
 <pre><code># !/usr/bin/env python
-# -*- coding: UTF-8 &amp;nbsp;-*-
+# -*- coding: UTF-8 -*-
 # Scraping The Guardian using Python
 # 20120421@ Canberra
 # chengjun wang
@@ -138,21 +138,21 @@ http://content.guardianapis.com/search?q=occupy+wall+street&amp;from-date=2011-0
 
 '''step 1: input query information'''
 apiUrl='http://content.guardianapis.com/search?q=occupy+wall+street' # set the query word here
-apiDate='from-date=2011-09-01&amp;to-date=2011-10-14' &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; # set the date here
-apiPage='page=2' &amp;nbsp; &amp;nbsp; &amp;nbsp;# set the page
-apiNum=10 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; # set the number of articles in one page
+apiDate='from-date=2011-09-01&amp;to-date=2011-10-14'           # set the date here
+apiPage='page=2'   # set the page
+apiNum=10       # set the number of articles in one page
 apiPageSize=''.join(['page-size=',str(apiNum)])
 fields='format=json&amp;show-fields=all&amp;use-date=newspaper-edition'
-key='api-key=mudfuj...g33gzq' &amp;nbsp;# input your key here
+key='api-key=mudfuj...g33gzq' # input your key here
 
 '''step 2: get the number of offset/pages'''
 link=[apiUrl, apiDate, apiPage, apiPageSize, fields, key]
 ReqUrl='&amp;'.join(link)
-jstr = urllib2.urlopen(ReqUrl).read() &amp;nbsp;# t = jstr.strip('()')
+jstr = urllib2.urlopen(ReqUrl).read() # t = jstr.strip('()')
 ts = json.loads( jstr )
-number=ts['response']['total'] # &amp;nbsp;the number of queries &amp;nbsp;# query=ts['tokens'] # result=ts['results']
+number=ts['response']['total'] # the number of queries # query=ts['tokens'] # result=ts['results']
 print number
-seq=range(number/(apiNum-1)) &amp;nbsp;# this is not a good way
+seq=range(number/(apiNum-1)) # this is not a good way
 print seq
 
 '''step 3: crawl the data and dump into csv'''
@@ -160,23 +160,23 @@ import csv
 addressForSavingData= "D:/Research/Dropbox/tweets/wapor_assessing online opinion/News coverage of ows/guardian.csv"
 file = open(addressForSavingData,'wb') # save to csv file
 for i in seq:
-nums=str(i+1)
-apiPages=''.join(['page=', nums]) # I made error here, and print is a good way to test
-links= [apiUrl, apiDate, apiPages, apiPageSize, fields, key]
-ReqUrls='&amp;'.join(links)
-print "*_____________*", ReqUrls
-jstrs = urllib2.urlopen(ReqUrls).read()
-t = jstrs.strip('()')
-tss= json.loads( t )
-result = tss['response']['results']
-for ob in result:
-title=ob['webTitle'].encode('utf-8') &amp;nbsp;# body=ob['body'] &amp;nbsp; # body,url,title,date,des_facet,desk_facet,byline
-print title
-section=ob["sectionName"].encode('utf-8')
-url=ob['webUrl']
-date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] &amp;nbsp;# byline=ob['fields']['byline']
-w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-w.writerow((date, title, section, url)) # write it out
+	nums=str(i+1)
+	apiPages=''.join(['page=', nums]) # I made error here, and print is a good way to test
+	links= [apiUrl, apiDate, apiPages, apiPageSize, fields, key]
+	ReqUrls='&amp;'.join(links)
+	print "*_____________*", ReqUrls
+	jstrs = urllib2.urlopen(ReqUrls).read()
+	t = jstrs.strip('()')
+	tss= json.loads( t )
+	result = tss['response']['results']
+	for ob in result:
+		title=ob['webTitle'].encode('utf-8') # body=ob['body']  # body,url,title,date,des_facet,desk_facet,byline
+		print title
+		section=ob["sectionName"].encode('utf-8')
+		url=ob['webUrl']
+		date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] # byline=ob['fields']['byline']
+		w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+		w.writerow((date, title, section, url)) # write it out
 file.close()
 pass
 </code></pre>
@@ -236,7 +236,7 @@ $(function(){
     var url = false;
         if (e.which == 37 || e.which == 74) {  // Left arrow and J
             
-        url = 'http://chengjun.github.io/en/2011/12/visualize-with-googlevis/';
+        url = 'http://chengjun.github.io/en/2012/03/sentiment-analysi-with-python/';
         
         }
         else if (e.which == 39 || e.which == 75) {  // Right arrow and K
