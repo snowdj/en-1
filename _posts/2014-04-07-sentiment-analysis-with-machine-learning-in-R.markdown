@@ -212,6 +212,7 @@ Then, try the other methods:
 	> 0.95
 
 Here we also want to get the formal test results, including:
+
 - **analytics@algorithm_summary**: SUMMARY OF PRECISION, RECALL, F-SCORES, AND ACCURACY SORTED BY TOPIC CODE FOR EACH ALGORITHM
 
 - **analytics@label_summary**: SUMMARY OF LABEL (e.g. TOPIC) ACCURACY
