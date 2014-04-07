@@ -125,23 +125,23 @@ After you have registered you app and got the key, we can work on the python scr
 	addressForSavingData= "D:/Research/Dropbox/tweets/wapor_assessing online opinion/News coverage of ows/guardian.csv"
 	file = open(addressForSavingData,'wb') # save to csv file
 	for i in seq:
-	nums=str(i+1)
-	apiPages=''.join(['page=', nums]) # I made error here, and print is a good way to test
-	links= [apiUrl, apiDate, apiPages, apiPageSize, fields, key]
-	ReqUrls='&'.join(links)
-	print "*_____________*", ReqUrls
-	jstrs = urllib2.urlopen(ReqUrls).read()
-	t = jstrs.strip('()')
-	tss= json.loads( t )
-	result = tss['response']['results']
-	for ob in result:
-	title=ob['webTitle'].encode('utf-8') # body=ob['body']  # body,url,title,date,des_facet,desk_facet,byline
-	print title
-	section=ob["sectionName"].encode('utf-8')
-	url=ob['webUrl']
-	date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] # byline=ob['fields']['byline']
-	w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-	w.writerow((date, title, section, url)) # write it out
+		nums=str(i+1)
+		apiPages=''.join(['page=', nums]) # I made error here, and print is a good way to test
+		links= [apiUrl, apiDate, apiPages, apiPageSize, fields, key]
+		ReqUrls='&'.join(links)
+		print "*_____________*", ReqUrls
+		jstrs = urllib2.urlopen(ReqUrls).read()
+		t = jstrs.strip('()')
+		tss= json.loads( t )
+		result = tss['response']['results']
+		for ob in result:
+			title=ob['webTitle'].encode('utf-8') # body=ob['body']  # body,url,title,date,des_facet,desk_facet,byline
+			print title
+			section=ob["sectionName"].encode('utf-8')
+			url=ob['webUrl']
+			date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] # byline=ob['fields']['byline']
+			w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+			w.writerow((date, title, section, url)) # write it out
 	file.close()
 	pass
 
