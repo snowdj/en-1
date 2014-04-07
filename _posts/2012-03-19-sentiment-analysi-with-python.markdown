@@ -82,7 +82,7 @@ Then, we can build up the training set and create the classifier:
 	
 	classifier = nltk.NaiveBayesClassifier.train(training_set)
 
-You may what to know how to define the 'train' method in NLTK here:
+You may want to know how to define the 'train' method in NLTK here:
 
 	def train(labeled_featuresets, estimator=nltk.probability.ELEProbDist):
 	    # Create the P(label) distribution
