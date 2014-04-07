@@ -86,7 +86,7 @@ After you have registered you app and got the key, we can work on the python scr
 
 
 	# !/usr/bin/env python
-	# -*- coding: UTF-8 &nbsp;-*-
+	# -*- coding: UTF-8 -*-
 	# Scraping The Guardian using Python
 	# 20120421@ Canberra
 	# chengjun wang
@@ -103,21 +103,21 @@ After you have registered you app and got the key, we can work on the python scr
 	
 	'''step 1: input query information'''
 	apiUrl='http://content.guardianapis.com/search?q=occupy+wall+street' # set the query word here
-	apiDate='from-date=2011-09-01&to-date=2011-10-14' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # set the date here
-	apiPage='page=2' &nbsp; &nbsp; &nbsp;# set the page
-	apiNum=10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # set the number of articles in one page
+	apiDate='from-date=2011-09-01&to-date=2011-10-14'           # set the date here
+	apiPage='page=2'   # set the page
+	apiNum=10       # set the number of articles in one page
 	apiPageSize=''.join(['page-size=',str(apiNum)])
 	fields='format=json&show-fields=all&use-date=newspaper-edition'
-	key='api-key=mudfuj...g33gzq' &nbsp;# input your key here
+	key='api-key=mudfuj...g33gzq' # input your key here
 	
 	'''step 2: get the number of offset/pages'''
 	link=[apiUrl, apiDate, apiPage, apiPageSize, fields, key]
 	ReqUrl='&'.join(link)
-	jstr = urllib2.urlopen(ReqUrl).read() &nbsp;# t = jstr.strip('()')
+	jstr = urllib2.urlopen(ReqUrl).read() # t = jstr.strip('()')
 	ts = json.loads( jstr )
-	number=ts['response']['total'] # &nbsp;the number of queries &nbsp;# query=ts['tokens'] # result=ts['results']
+	number=ts['response']['total'] # the number of queries # query=ts['tokens'] # result=ts['results']
 	print number
-	seq=range(number/(apiNum-1)) &nbsp;# this is not a good way
+	seq=range(number/(apiNum-1)) # this is not a good way
 	print seq
 	
 	'''step 3: crawl the data and dump into csv'''
@@ -135,11 +135,11 @@ After you have registered you app and got the key, we can work on the python scr
 	tss= json.loads( t )
 	result = tss['response']['results']
 	for ob in result:
-	title=ob['webTitle'].encode('utf-8') &nbsp;# body=ob['body'] &nbsp; # body,url,title,date,des_facet,desk_facet,byline
+	title=ob['webTitle'].encode('utf-8') # body=ob['body']  # body,url,title,date,des_facet,desk_facet,byline
 	print title
 	section=ob["sectionName"].encode('utf-8')
 	url=ob['webUrl']
-	date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] &nbsp;# byline=ob['fields']['byline']
+	date=ob['fields']['newspaperEditionDate'] # date=ob['webPublicationDate'] # byline=ob['fields']['byline']
 	w = csv.writer(file,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
 	w.writerow((date, title, section, url)) # write it out
 	file.close()
