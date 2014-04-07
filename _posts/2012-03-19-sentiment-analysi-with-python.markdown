@@ -121,4 +121,4 @@ Now, we will classify the test_tweets and calculate the recall accuracy.
 	print('Total accuracy: %f%% (%d/20).' % (accuracy / total * 100, accuracy))
     # 0.8
 
-Of course, this is only the starting point. In the future, I will use the same data set, to so how to do it in R using naive Bayes and beyond.
+Of course, this is only the starting point. In the future, I will use the same data set, to so [how to do it in R](http://chengjun.github.io/en/2014/04/sentiment-analysis-with-machine-learning-in-R/) using naive Bayes and beyond.
