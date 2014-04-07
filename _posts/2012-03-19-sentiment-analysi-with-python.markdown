@@ -14,7 +14,7 @@ Learning To Do Sentiment Analysis Using Python & NLTK
 
 This is my first try to learn sentiment analysis using python. You can find the original post by Laurent Luce [following this link](http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/). 
 
-I am glad to know that nltk could distinguish ‘like’ and ‘not like’. I am wondering how R behaves compared it. The method below employ the procedure as the figure demonstrates below.
+I am glad to know that, with the aid of naive Bayes, NLTK could distinguish ‘like’ and ‘does not like’ into 'positive' and 'negative' respectively. I am wondering how R behaves compared with it. The method below employed the procedures depicted in the following figure.
 
 ![original author: Laurent Luce](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/03/overview-of-sentiment-analysis-using-nltk.png)
 
@@ -121,4 +121,4 @@ Now, we will classify the test_tweets and calculate the recall accuracy.
 	print('Total accuracy: %f%% (%d/20).' % (accuracy / total * 100, accuracy))
     # 0.8
 
-Of course, this is only the starting point. In the future, I will use the same data set, to so how to do it in R using naive bayes and beyond.
+Of course, this is only the starting point. In the future, I will use the same data set, to so how to do it in R using naive Bayes and beyond.

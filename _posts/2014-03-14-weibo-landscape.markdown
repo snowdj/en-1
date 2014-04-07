@@ -11,15 +11,17 @@ tags:
 ---
 
 
-Getting the opinions tweeted & retweeted by the most influential users of Sina Weibo About Sina Weibo, you can refer to the webpage of [wikipedia](http://en.wikipedia.org/wiki/Sina_Weibo#cite_note-3):
+This post is about the opinions tweeted & retweeted by the most influential users of Sina Weibo. 
+
+About Sina Weibo, you can refer to the webpage of [wikipedia](http://en.wikipedia.org/wiki/Sina_Weibo#cite_note-3):
 
 > Sina Weibo (Chinese: 新浪微博; pinyin: Xīnlàng Wēibó; literally “Sina Microblog”) is a Chinese microblogging (weibo) website. Akin to a hybrid of Twitter and Facebook, it is one of the most popular sites in China, in use by well over 30% of Internet users, with a similar market penetration that Twitter has established in the USA. It was launched by SINA Corporation on 14 August 2009, and has more than 300 million registered users as of February 2012. 
 
-What will  be the media landscape like? From this archive, you can get the opinions tweeted & retweeted by the most influential users of Sina Weibo. For the Interest of Academic study, this archive is open now, you can find the Link to the archive here
+To study the news diffusion of Weibo Users, My collaborator Linwu and I had set up a research project of Weibo Landscape aiming at archiving the historical tweets of 800 verified weibo accounts (Rich club of Sina Weibo) before March 2012. Both the tweets created by them and the tweets retweeted by them are collected and indexed. So this archive can supply you the historical opinions reflected by these most influential users: including 400 media accounts+100 website accounts+ 100 government accounts +100 celebrities accounts+100 grass root accounts
+
+How does the media landscape look like? 
 
 ![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/04/landscape.png)
-
-400 media accounts+100 website accounts+ 100 government accounts +100 celebrities accounts+100 grass root accounts
 
 ### The Opinions of the Rich Club
 
@@ -32,7 +34,7 @@ weighted network (Opsahl et al., 2008)
 - high degree nodes form many ties with each other 
 (Borgatti and Everett, 1999; Colizza et al., 2006; Newman, 2002)
 
-To study the news diffusion of Weibo Users, My collaborator Linwu and I had set up a research project of Weibo Landscape aiming at archiving the historical tweets of 800 verified weibo accounts (Rich club of Sina Weibo) before March 2012. Both the tweets created by them and the tweets retweeted by them are collected and indexed. So this archive can supply you the historical opinions reflected by these most influential users.
+
 
 ![](http://weblab.com.cityu.edu.hk/blog/chengjun/files/2012/04/core-and-periphery.png)
 

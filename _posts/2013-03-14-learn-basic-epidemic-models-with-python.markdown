@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learning basic epidemic models with R"
+title: "Learning basic epidemic models with Python"
 date: 2013-08-14 14:23
 comments: true
 categories: 
