@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sentiment analysis with machine learning in R"
-date: 2013-08-14 14:23
+date: 2014-04-07 10:10
 comments: true
 categories: 
 - R
@@ -203,9 +203,10 @@ Then, try the other methods:
 	results = classify_models(container, models)
 
 	table(as.numeric(as.numeric(sentiment_all[161:180])), results[,"FORESTS_LABEL"])
-	>      1  2
-  	>	1 10  0
-  	>	2  1  9
+	>
+    	  1  2
+       1 10  0
+       2  1  9
 
 	recall_accuracy(as.numeric(as.numeric(sentiment_all[161:180])), results[,"FORESTS_LABEL"])
 	> 0.95
