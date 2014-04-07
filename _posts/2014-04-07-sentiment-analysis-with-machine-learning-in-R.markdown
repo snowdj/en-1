@@ -20,7 +20,7 @@ Actually, both sentiment analysis and the general text mining techniques have be
 
 
 
- <p style="text-align:center"> **Timothy P. Jurka** [Photo from [here](http://stackoverflow.com/users/1106926/timothy-p-jurka)]</p>
+ <p style="text-align:center"> Timothy P. Jurka </p> [Photo from [here](http://stackoverflow.com/users/1106926/timothy-p-jurka)]
 
 However, the naive bayes method is not included into RTextTools. Maybe the reason is it's too easy to make it in R, since the e1071 package did a good job. e1071 seems to be a course of the Department of Statistics (e1071), TU Wien. Its primary developer is [David Meyer](http://www.technikum-wien.at/fh/institute/wirtschaftsinformatik/team/meyer/).
 
