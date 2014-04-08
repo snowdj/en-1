@@ -14,7 +14,7 @@ tags:
 
 In [an earlier post](http://chengjun.github.io/en/2012/03/sentiment-analysi-with-python/), I tried to reproduce the sentiment analysis using machine learning in Python. Here, I will introduce how to do it in the framework of R.
 
-Actually, both sentiment analysis and the general text mining techniques have been well developed by [Timothy P. Jurka](https://github.com/timjurka). You can check out the[ sentiment package](https://github.com/timjurka/sentiment) and the fantastic [RTextTools package](https://github.com/timjurka/RTextTools). Actually, Timothy also writes [an maxent package](https://github.com/timjurka/maxent) for low-memory multinomial logistic regression (also known as maximum entropy). 
+In the landscape of R, both sentiment analysis package and the general text mining package of machine learning have been well developed by [Timothy P. Jurka](https://github.com/timjurka). You can check out the[ sentiment package](https://github.com/timjurka/sentiment) and the fantastic [RTextTools package](https://github.com/timjurka/RTextTools). Actually, Timothy also writes [an maxent package](https://github.com/timjurka/maxent) for low-memory multinomial logistic regression (also known as maximum entropy). 
 
 ![](https://www.gravatar.com/avatar/92b11d2b562de1d82bf134c80b4ee925?s=128&d=identicon&r=PG)
 
@@ -26,7 +26,9 @@ However, the naive bayes method is not included into RTextTools. Maybe the reaso
 
 ![](http://ih1.redbubble.net/image.9785413.8464/fig,royal_blue,mens,ffffff.jpg)
 
-Text analysis in R has been well recognized (see [the R views on natural language processing](http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)). Part of the success belongs to the [tm package](http://cran.r-project.org/web/packages/tm/index.html): A framework for text mining applications within R. It did a good job for text cleaning (stemming, delete the stopwords, etc) and transforming texts to document-term matrix (dtm). There is [one paper](http://www.jstatsoft.org/v25/i05/paper) about it. As you know the most important part of text analysis is to get the feature vectors for each document. The word feature is the most important one. Of course, you can also extend the **unigram** word features to **bigram** and **trigram**, and so on to **n-grams**. However, here for our simple case, we stick to the unigram word features.
+Text analysis in R has been well recognized (see [the R views on natural language processing](http://cran.r-project.org/web/views/NaturalLanguageProcessing.html)). Part of the success belongs to the [tm package](http://cran.r-project.org/web/packages/tm/index.html): A framework for text mining applications within R. It did a good job for text cleaning (stemming, delete the stopwords, etc) and transforming texts to document-term matrix (dtm). There is [one paper](http://www.jstatsoft.org/v25/i05/paper) about it. As you know the most important part of text analysis is to get the feature vectors for each document. The word feature is the most important one. Of course, you can also extend the **unigram** word features to **bigram** and **trigram**, and so on to **n-grams**. However, here for our simple case, we stick to the unigram word features. 
+
+Note, it's easy to use ngrams in R. In the past, the package of Rweka supplies functions to do it ([check this example](http://stackoverflow.com/questions/8161167/what-algorithm-i-need-to-find-n-grams)). Now, you can set the `ngramLength` in the function of create_matrix using RTextTools.
 
 The first step is to read data:
 
@@ -70,7 +72,7 @@ Then we can build the document-term matrix:
 	# build dtm
 	matrix= create_matrix(tweets[,1], language="english", 
 	                      removeStopwords=FALSE, removeNumbers=TRUE,  # we can also removeSparseTerms
-	                      stemWords=FALSE, tm::weightTfIdf) 
+	                      stemWords=FALSE) 
 
 Now, we can train the naive Bayes model with the training set. Note that, e1071 asks the response variable to be numeric or factor. Thus, we convert characters to factors here. This is a little trick.
 
