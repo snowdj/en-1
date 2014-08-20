@@ -9,8 +9,12 @@ tags:
 - javascript
 ---
 
+![](http://chengjun.qiniudn.com/ashoka-globe.PNG)
+
 ####Social Entrepreneurs Worldwide
-Ashoka is the largest network of social entrepreneurs worldwide. Ashoka Fellows are leading social entrepreneurs who we recognize to have innovative solutions to social problems and the potential to change patterns across society. They demonstrate unrivaled commitment to bold new ideas and prove that compassion, creativity, and collaboration are tremendous forces for change. Ashoka Fellows work in over 70 countries around the globe in every area of human need.
+`Ashoka is the largest network of social entrepreneurs worldwide. Ashoka Fellows are leading social entrepreneurs who we recognize to have innovative solutions to social problems and the potential to change patterns across society. They demonstrate unrivaled commitment to bold new ideas and prove that compassion, creativity, and collaboration are tremendous forces for change. Ashoka Fellows work in over 70 countries around the globe in every area of human need.`
+
+In this post, I would try to visualize its global distributions using [WebGL Globe](http://www.chromeexperiments.com/globe). `The WebGL Globe is an open platform for geographic data visualization.` 
 
 ####Data Cleaning
 First, I get the country frequency using the following R script: 
@@ -101,7 +105,7 @@ And here is the result:
      #('Poland', 69), ('Nigeria', 70), ('Thailand', 88), ('South Africa', 94), 
      #('Indonesia', 123), ('Mexico', 153), ('United States', 160), ('Brazil', 286), ('India', 303)]
 
-![]()
+
 
 
  
