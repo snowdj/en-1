@@ -10,6 +10,7 @@ tags:
 ---
 
 ![](http://chengjun.qiniudn.com/ashoka-globe.PNG)
+View it here [http://chengjun.github.io/globe/ashoka.html](http://chengjun.github.io/globe/ashoka.html)
 
 ####Social Entrepreneurs Worldwide
 `Ashoka is the largest network of social entrepreneurs worldwide. Ashoka Fellows are leading social entrepreneurs who we recognize to have innovative solutions to social problems and the potential to change patterns across society. They demonstrate unrivaled commitment to bold new ideas and prove that compassion, creativity, and collaboration are tremendous forces for change. Ashoka Fellows work in over 70 countries around the globe in every area of human need.`
