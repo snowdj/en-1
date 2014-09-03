@@ -14,7 +14,9 @@ tags:
 
 ![](http://mediaserver.pulse2.com/uploads/2007/05/google_feedburner_logos.png)
 
-I learnt that many people like to subscribe a blog by email. The website usually supplies its feed, but not such subscription service. Actually, it's quite straightford to do so using the [feedburner of Google](http://feedburner.google.com/). After the webmaster sucessfully makes up the feedburner, he or she can look into the Publicize webpage, and click the button of Subscription Management. After it is activated, you can got the url for eamil subscription. That's it. 
+I learnt that many people like to subscribe a blog by email. The website usually supplies its feed, but not such subscription service. Actually, it's quite straightford to do so using the [feedburner of Google](http://feedburner.google.com/). After the webmaster sucessfully makes up the feedburner, he or she can look into the Publicize webpage, and click the button of Subscription Management. After it is activated, you can got the url for email subscription. That's it. 
+
+Then you can find the html code for email subscription as below:
 
 ### Subscription Form
  
