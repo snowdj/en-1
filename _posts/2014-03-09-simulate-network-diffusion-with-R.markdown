@@ -195,4 +195,4 @@ Similar to Netlogo (a software used for agent-based modeling), we can monitor th
 Based on this post, I made slides using Rpres in Rstudio, you can view it  following this [link](http://chengjun.github.io/network-diffusion). 
 
 
-<iframe src="http://chengjun.github.io/network-diffusion/" onload="this.width=screen.width;this.height=screen.height;">
+<iframe src="http://chengjun.github.io/network-diffusion/" width = "600" height = "400">
