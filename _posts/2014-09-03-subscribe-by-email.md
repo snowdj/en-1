@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Subscribe This Blog by Email"
+title: "Subscribe to This Blog by Email"
 date: 2014-09-03
 comments: true
 categories: 
