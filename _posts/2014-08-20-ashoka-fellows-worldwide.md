@@ -9,6 +9,7 @@ tags:
 - javascript
 ---
 
+
 ![](http://chengjun.qiniudn.com/ashoka-globe.PNG)
 View it here [http://chengjun.github.io/globe/ashoka.html](http://chengjun.github.io/globe/ashoka.html)
 
@@ -109,4 +110,4 @@ And here is the result:
 
 
 
- 
+ <iframe src='http://chengjun.github.io/globe/ashoka.html' scrolling="no" width="600" height = "400"></iframe>
