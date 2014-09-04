@@ -110,4 +110,4 @@ And here is the result:
 
 
 
- <iframe src='http://chengjun.github.io/globe/ashoka.html' scrolling="no" width="800" height = "600"></iframe>
+ <iframe src='http://chengjun.github.io/globe/ashoka.html' scrolling="no" width="800" height = "600" allowfullscreen></iframe>
