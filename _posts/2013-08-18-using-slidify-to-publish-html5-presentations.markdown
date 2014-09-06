@@ -147,7 +147,7 @@ You can generate new sub-branch too. e.g., slidify/computational-communication. 
 
 If your markdown file is 'selfcontained'{:lang="ruby"} , it will not turn to https://code.google.com/p/slidifylibraries/ for the font and theme information (but it still needs to refer to the other websites where your insert your pictures into your slides). So theoretically, self-contained file is a little little little bit faster than 'standalone'{:lang="ruby"} files. However, you can almost not detect it if the internet access is good. Check this standalone HTML in the following link and compare it with the two selfcontained ones on the above:
 
-<iframe src="http://chengjun.github.io/slides/" width="800" height="600" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="http://chengjun.github.io/slides/" width="800" height="400" scrolling="yes" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 
 [](http://chengjun.github.io/slides/)
