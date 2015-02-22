@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "scholarNetwork: Visualizing Google Scholar Network"
-date: 2008-01-01
+date: 2015-02-22
 comments: true
 categories: 
 - python
